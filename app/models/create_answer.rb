@@ -1,0 +1,2 @@
+class CreateAnswer < ApplicationRecord
+end
