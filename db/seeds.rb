@@ -39,6 +39,13 @@ questions = Qustion.create!([
   {body: 'Когда появился язык программирования Swift?',test_id: tests[2].id}
 ])
 
+
+user_tests = UserTest.create!([
+{user_id: users[0].id,test_id: tests[0].id},
+{user_id: users[1].id,test_id: tests[1].id},
+{user_id: users[2].id,test_id: tests[1].id}
+])
+
 # answers = Answer.create!([
 #   {title: '1995', correct: true, question_id: questions[0]},
 #   {title: '1996', correct: false, question_id: questions[0]},
