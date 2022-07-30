@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :tests, trought: :user_tests
+  has_many :tests, through: :user_tests
   has_many :author, class_name: 'Test'
 
   def level_test(level)
