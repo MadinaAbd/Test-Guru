@@ -29,7 +29,7 @@ class TestsController < ApplicationController
   def destroy
     @test.destroy
 
-    render plain: 'Test was successfully removed'
+    render plain: 'Тест удален'
   end
 
   def find_test
@@ -41,6 +41,6 @@ class TestsController < ApplicationController
   end
 
   def rescue_with_test_not_found
-    render plain: "Test wasn't found"
+    render plain: "Тест не найден"
   end
 end
