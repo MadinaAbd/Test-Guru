@@ -5,17 +5,9 @@ class QuestionsController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
 
-  def index
-    render plain: { tests: @test.questions }
-  end
-
   def edit; end
 
   def show; end
-
-  def show
-    render plain: { test: @questions }
-  end
 
   def new
     @question = @test.questions.new
