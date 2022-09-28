@@ -1,19 +1,20 @@
 class TestsController < ApplicationController
 
-  before_action :find_test, only: [:show, :destroy]
+  before_action :find_test, only: [:show, :edit, :update, :destroy]
+
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
 
   def index
-    tests = Test.all
-
-    render plain: { tests: tests }
+    @tests = Test.all
   end
 
-  def show
-    render plain: { tests: @test }
-  end
+  def show; end
 
-  def new; end
+  def edit; end
+
+  def new
+    @test = Test.new
+  end
 
   def create
     @test = Test.new(test_params)
@@ -28,7 +29,15 @@ class TestsController < ApplicationController
   def destroy
     @test.destroy
 
-    render plain: 'Тест удален'
+    redirect_to tests_path
+  end
+
+  def update
+    if @test.update(test_params)
+      redirect_to @test
+    else
+      render :edit
+    end
   end
 
   private
@@ -45,3 +54,4 @@ class TestsController < ApplicationController
     render plain: "Тест не найден"
   end
 end
+
