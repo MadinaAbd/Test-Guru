@@ -1,26 +1,28 @@
 class Test < ApplicationRecord
-
   belongs_to :category
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :author, class_name: 'User'
 
-  has_many :users, through: :user_tests
-  has_many :user_tests, dependent: :destroy
   has_many :questions, dependent: :destroy
+  has_many :test_passages, dependent: :destroy
+  has_many :users, through: :test_passages
 
   validates :title, presence: true,
-                    uniqueness: { scope: :level }
-  validates :level, uniqueness: { only_integer: true, greater_than: 0}
+                    uniqueness: { scope: :level,
+                                  message: :uniq_title_with_level }
+
+  validates :level, numericality: { greater_than_or_equal_to: 0,
+                                    only_integer: true }
 
   scope :easy, -> { where(level: 0..1) }
-  scope :middle, -> { where(level: 2..4) }
+  scope :advanced, -> { where(level: 2..4) }
   scope :hard, -> { where(level: 5..Float::INFINITY) }
-  scope :tests_by_category, -> (category_title) { joins(:category)
-    .where(categories: { title: category_title})
-    .order(title: :desc) }
 
-
-  def self.tests_by_category(category_title)
-    tests_by_category(category_title).pluck(:title)
+  def self.list_by_category(title)
+    joins(:category)
+      .where(categories: { title: title })
+      .order(title: :desc)
+      .pluck(:title)
   end
 
+  scope :list_by_level, ->(level) { where(level: level) }
 end

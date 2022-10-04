@@ -1,6 +1,7 @@
 class TestsController < ApplicationController
 
-  before_action :find_test, only: [:show, :edit, :update, :destroy]
+  before_action :find_test, only: %i[show edit update destroy]
+  before_action :find_user, only: %i[start]
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
 
@@ -40,18 +41,28 @@ class TestsController < ApplicationController
     end
   end
 
-  private
-
-  def find_test
-    @test = Test.find(params[:id])
+  def start
+    @user.tests.push(@test)
+    redirect_to @user.test_passage(@test)
   end
+
+  private
 
   def test_params
     params.require(:test).permit(:title, :level, :category_id, :author_id)
   end
 
+  def find_test
+    @test = Test.find(params[:id])
+  end
+
   def rescue_with_test_not_found
     render plain: "Тест не найден"
   end
+
+  def find_user
+    @user = User.find(params[:id])
+  end
+
 end
 
