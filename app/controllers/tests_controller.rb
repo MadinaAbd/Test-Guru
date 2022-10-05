@@ -61,7 +61,7 @@ class TestsController < ApplicationController
   end
 
   def find_user
-    @user = User.find(params[:id])
+    @user = User.first
   end
 
 end

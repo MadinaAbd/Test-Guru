@@ -14,7 +14,6 @@ class TestPassage < ApplicationRecord
       self.correct_questions +=1
     end
 
-    self.current_question = next_question
     save!
   end
 
@@ -25,11 +24,11 @@ class TestPassage < ApplicationRecord
   end
 
   def correct_answer?(answer_ids)
-    correct_answers.ids.sort == answer_ids.map(&:to_i).sort
+    correct_answers.ids.sort == answer_ids.map(&:to_i).sort && answer_ids.present?
   end
 
   def correct_answers
-    current_question.answers. correct_answers
+    current_question.answers.correct_answers
   end
 
   def next_question
