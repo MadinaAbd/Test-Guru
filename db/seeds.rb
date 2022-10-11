@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+TestPassage.destroy_all
 User.destroy_all
 Answer.destroy_all
 Question.destroy_all
@@ -46,11 +47,11 @@ user_tests = UserTest.create!([
 {user: users[2],test: tests[1]}
 ])
 
-# answers = Answer.create!([
-#   {title: '1995', correct: true, question: questions[0]},
-#   {title: '1996', correct: false, question: questions[0]},
-#   {title: '1995', correct: true, question: questions[1]},
-#   {title: '1998', correct: false, question: questions[1]},
-#   {title: '2014', correct: true, question: questions[2]},
-#   {title: '2013', correct: false, question: questions[2]}
-# ])
+answers = Answer.create!([
+  {title: '1995', correct: true, question: questions[0]},
+  {title: '1996', correct: false, question: questions[0]},
+  {title: '1995', correct: true, question: questions[1]},
+  {title: '1998', correct: false, question: questions[1]},
+  {title: '2014', correct: true, question: questions[2]},
+  {title: '2013', correct: false, question: questions[2]}
+])
