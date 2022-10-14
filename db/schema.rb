@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2022_09_30_205009) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title", null: false
-    t.boolean "correct", null: false
+    t.boolean "correct", default: false, null: false
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -40,8 +40,8 @@ ActiveRecord::Schema.define(version: 2022_09_30_205009) do
     t.integer "test_id", null: false
     t.integer "current_questions_id"
     t.integer "correct_questions", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["current_questions_id"], name: "index_test_passages_on_current_questions_id"
     t.index ["test_id"], name: "index_test_passages_on_test_id"
     t.index ["user_id"], name: "index_test_passages_on_user_id"
@@ -60,14 +60,13 @@ ActiveRecord::Schema.define(version: 2022_09_30_205009) do
 
   create_table "users", force: :cascade do |t|
     t.string "name", null: false
-    t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
-  add_foreign_key "test_passages", "current_questions", column: "current_questions_id"
+  add_foreign_key "test_passages", "questions", column: "current_questions_id"
   add_foreign_key "test_passages", "tests"
   add_foreign_key "test_passages", "users"
   add_foreign_key "tests", "categories"

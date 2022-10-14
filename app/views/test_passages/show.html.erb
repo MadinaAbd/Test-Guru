@@ -1,13 +1,13 @@
-<h1>Прохождение <%= @test_passage.title %> теста </h1>
+<h>Прохождение <%= @test_passage.test.title %> теста </h>
 
 <b>
-  <%= @test_passages.current_question.body %>
+  <%= @test_passage.current_questions.body %>
 </b>
 <p>
-  <%= view_current_question(@test_passage)%>
+  <%= view_current_questions(@test_passage)%>
 </p>
 <%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
-  <%= form.collection_check_boxes :answer_ids, @test_passage.current_question.answers, :id, :body, include_hidden: false do |b| %>
+  <%= form.collection_check_boxes :answer_ids, @test_passage.current_questions.answers, :id, :title, include_hidden: false do |b| %>
     <p>
       <%= b.check_box id: "answer_ids_#{b.object.id}" %>
       <%= b.label %>
