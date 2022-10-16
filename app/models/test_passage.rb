@@ -16,7 +16,6 @@ class TestPassage < ApplicationRecord
       self.correct_questions +=1
     end
 
-    self.current_questions = next_question
     save!
   end
 
@@ -53,5 +52,4 @@ class TestPassage < ApplicationRecord
       test.questions.order(:id).where('id > ?', current_questions.id).first
     end
   end
-
 end
