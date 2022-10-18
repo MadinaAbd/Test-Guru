@@ -1,11 +1,9 @@
 class QuestionsController < ApplicationController
 
-  before_action :find_test, only: [:new, :create]
-  before_action :find_question, only: [:edit, :show, :destroy, :update]
+  before_action :find_test, only: %i[new create]
+  before_action :find_question, only: %i[show destroy edit update]
 
-  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_test_not_found
-
-  def edit; end
+  rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_question_not_found
 
   def show; end
 
@@ -13,13 +11,7 @@ class QuestionsController < ApplicationController
     @question = @test.questions.new
   end
 
-  def destroy
-    @question.destroy
-
-    render plain: "Вопрос удален"
-  end
-
- def create
+  def create
     @question = @test.questions.new(question_params)
 
     if @question.save
@@ -28,6 +20,14 @@ class QuestionsController < ApplicationController
       render :new
     end
   end
+
+  def destroy
+    @question.destroy
+
+    redirect_to @question.test
+  end
+
+  def edit; end
 
   def update
     if @question.update(question_params)
@@ -47,12 +47,11 @@ class QuestionsController < ApplicationController
     @test = Test.find(params[:test_id])
   end
 
-
-  def resque_with_test_not_found
-    render plain: "Вопрос не найден"
+  def question_params
+    params.require(:question).permit(:body, :test_id)
   end
 
-  def question_params
-    params.require(:question).permit(:body)
+  def rescue_with_question_not_found
+    render plain: "Вопрос не найден."
   end
 end
