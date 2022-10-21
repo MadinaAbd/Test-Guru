@@ -1,11 +1,9 @@
-<h>Прохождение <%= @test_passage.test.title %> теста </h>
+<h1>Passing the <%= @test_passage.test.title %> Test</h1>
 
 <b>
   <%= @test_passage.current_questions.body %>
 </b>
-<p>
-  <%= view_current_questions(@test_passage)%>
-</p>
+
 <%= form_with url: test_passage_path(@test_passage), local: true, method: :put do |form| %>
   <%= form.collection_check_boxes :answer_ids, @test_passage.current_questions.answers, :id, :title, include_hidden: false do |b| %>
     <p>
@@ -14,7 +12,7 @@
     </p>
   <% end %>
 
-  <p><%= link_to 'Назад к тестам', tests_path%> </p>
+  <p><%= link_to 'Назад к списку тестов', tests_path %> </p>
 
-  <p><%= form.submit 'Вперед' %></p>
+  <p><%= form.submit 'Следующий' %></p>
   <% end %>
