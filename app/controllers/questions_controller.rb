@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :find_test, only: %i[new create]
   before_action :find_question, only: %i[show destroy edit update]
 
@@ -12,7 +13,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = @test.questions.new(question_params)
+    @question = @test.questions.build(question_params)
 
     if @question.save
       redirect_to @question
@@ -48,7 +49,7 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:body, :test_id)
+    params.require(:question).permit(:body)
   end
 
   def rescue_with_question_not_found

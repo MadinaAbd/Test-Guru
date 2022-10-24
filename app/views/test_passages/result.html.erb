@@ -1,6 +1,11 @@
-<h1>Тест <%= test_passage.test.title%> пройден</h1>
-<h3><%= result_message(@test_passage) %>
-<strong style=<%= result_style(@test_passage) %>>
-  <%= @test_passage.result %>%</strong></h3>
-<h3>Правильных ответов: <%= @test_passage.correct_questions %></h3>
+<h1>Вы прошли тест: <%= @test_passage.test.title %></h1>
+
+<p>
+  <% if @test_passage.done? %>
+     Тест успешно пройден, твой результат:<span class="done"> <%= @test_passage.correct_percent %><%="%"%></span>
+  <% else %>
+    Тест не пройден, твой результат:<span class="failed"> <%= @test_passage.correct_percent %><%="%"%></span>
+  <% end %>
+</p>
+
 <%= link_to 'Вернуться к списку тестов', tests_path %>
