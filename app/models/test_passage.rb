@@ -16,8 +16,9 @@ class TestPassage < ApplicationRecord
   end
 
   def accept!(answer_ids)
-    if correct_answer?(answer_ids)
-      self.correct_questions +=1
+
+    if correct_answers?(answer_ids)
+      self.correct_questions += 1
     end
 
     save!
@@ -28,11 +29,11 @@ class TestPassage < ApplicationRecord
   end
 
   def number_current_questions
-    test.questions.where('id <= ?', current_question.id).count
+    test.questions.where('id <= ?', current_questions.id).count
   end
 
   def done?
-    correct_percent >= SUCCESS_PERCENT
+    correct_percent >= SUCCESS_PERCENT && completed?
   end
 
   private
@@ -41,7 +42,7 @@ class TestPassage < ApplicationRecord
     self.current_questions = next_question
   end
 
-  def correct_answer?(answer_ids)
+  def correct_answers?(answer_ids)
     correct_answers.ids.sort == answer_ids.map(&:to_i).sort
   end
 
