@@ -2,8 +2,8 @@
   <span class='nav_admin title'>TestGuru Admin</span>
 
   <div class='nav_admin user'>
-    Добро пожаловать, <b class='nav_admin user-email'><%= current_user.first_name %></b>
-      <%= link_to 'Выйти', destroy_user_session_path, method: :delete %>
+    <%= t('.welcome')%> <b class='nav_admin user-email'><%= current_user.name %></b>
+      <%= link_to t('.back'), destroy_user_session_path, method: :delete %>
    </div>
  </div>
 
