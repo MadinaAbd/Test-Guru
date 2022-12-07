@@ -1,0 +1,18 @@
+<h2><%= t('.header')<%= @question.test.title %></h2>
+
+<p>
+  <%= @question.body %>
+</p>
+
+<h2>Ответы</h2>
+
+<%= link_to t('.new_answer'), new_question_answer_path(@question) %>
+
+<ol>
+<%= render @question.answers %>
+</ol>
+
+<p>
+  <%= link_to t('.edit'), edit_question_path(@question) %>
+  <%= link_to t('.back'),edit_question_path(@question.test) %>
+</p>
