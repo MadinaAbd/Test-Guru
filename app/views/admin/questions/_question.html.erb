@@ -1,0 +1,9 @@
+<tr>
+  <td><%= question.body %></td>
+  <td><%= link_to t('.show'), question_path(question) %></td>
+  <td><%= link_to t('.edit'), edit_question_path(question) %></td>
+  <td><%= link_to t('.delete'),
+                question_path(question),
+                method: :delete,
+                data: { confirm: t('.delete_congirm') } %></td>
+</tr>
