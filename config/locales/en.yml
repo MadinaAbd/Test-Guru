@@ -39,6 +39,11 @@ en:
       author: "Author"
       about: "The TestGuru app is designed to create, manage and run various test."
       project: "Learning project in an online school"
+    nav:
+      welcome: "Welcome"
+      logout: "Log out"
+      login: "Log in"
+      sing_up: "Sing_up"
   tests:
     index:
       header: "All tests"
@@ -133,8 +138,12 @@ en:
       subject: "You just completed the TestGuru test!"
   users:
     new:
-      sing_up: "sing_up"
+      sing_up: "Sing_up"
       back: "Back"
+  sessions:
+    new:
+      header: "Enter the TestGuru"
+      remember_me: "Remember me"
   categories:
     Fantasy genre: "Жанр Фэнтези"
     Game: "Игра"
