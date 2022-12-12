@@ -41,6 +41,11 @@ ru:
       author: "Автор"
       about: "Приложение TestGuru."
       project: "Учебный проект в онлайн школе"
+    nav:
+      welcome: "Добро пожаловать"
+      logout: "Выйти"
+      login: "Войти"
+      sing_up: "Зарегистрироваться"
   tests:
     index:
       header: "Все тесты"
@@ -135,6 +140,10 @@ ru:
   test_mailer:
     completed_test:
       subject: "Вы успешно завершили тест на TestGuru!"
+  sessions:
+    new:
+      header: "Войдите в TestGuru"
+      remember_me: "Запомнить меня"
   categories:
     Fantasy genre: "Жанр Фэнтези"
     Game: "Игра"

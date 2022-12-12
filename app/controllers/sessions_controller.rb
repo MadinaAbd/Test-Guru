@@ -1,20 +1,9 @@
 class SessionsController < Devise::SessionsController
+  before_action :authenticate_user!
 
   def create
-    user = User.find_by(email: params[:email])
-
-    if user&.authenticate(params[:password])
-      session[:user_id] = user.id
-      redirect_to(cookies.delete(:return_path) || root_path)
-    else
-      flash.now[:alert] = 'Проверьте введённые данные и повторите попытку'
-      render :new
-    end
+    super
+    flash[:notise] = "Hello, #{@user.name}!"
   end
 
-   def destroy
-    session.delete(:user_id)
-    @current_user = nil
-    redirect_to login_path
-  end
 end

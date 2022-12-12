@@ -4,7 +4,7 @@
   <% if @test_passage.done? %>
      <%= t('.test_passed') %>:<span class="done"> <%= @test_passage.correct_percent %><%= "%" %></span>
   <% else %>
-    <%= t('.test_failed') %>:<span class="failed"> <%= @test_passage.correct_percent %><%= "% "%></span>
+    <%= t('.test_failed') %>:<span class="failed"> <%= @test_passage.correct_percent %><%= "%" %></span>
   <% end %>
 </p>
 
