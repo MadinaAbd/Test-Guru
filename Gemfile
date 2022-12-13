@@ -32,7 +32,12 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise', '~> 4.0'
 
-# LOCALIZATION
+#NETWORKING
+
+gem 'faraday'
+
+
+#LOCALIZATION
 
 gem 'rails-i18n', '~> 6.0.0'
 

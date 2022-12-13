@@ -3,7 +3,7 @@
 
   <span class="navbar-text">
     <% if user_signed_in? %>
-      <b><%= t('.welcome') %> <%= current_user.first_name %></b>
+      <b><%= t('.welcome') %> <%= current_user.name %></b>
       <b><%= link_to t('.logout'), destroy_user_session_path, data: {turbo_method: :delete} %></b>
     <% else %>
       <%= link_to t('.login'), new_session_path(resource_name) %> |

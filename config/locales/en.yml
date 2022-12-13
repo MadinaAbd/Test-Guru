@@ -59,6 +59,9 @@ en:
       test_passed: "The test was successfully passed, your result"
       test_failed: "Test failed, your result"
       back_to_tests: "Back to tests"
+    gist:
+      success: "Was successfully created"
+      failure: "An error occurred while saving gist"
     show:
       next: "Next"
       back_to_tests: "Back to tests"
