@@ -1,21 +1,10 @@
 class TestPassagesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_test_passage, only: %i[show result update gist]
+  before_action :set_test_passage, only: %i[show result update]
 
   def show; end
 
   def result; end
-
-  def gist
-    result = GistQuestionService.new(@test_passage.current_questions).call
-    if result.success?
-      Gist.create(url: result.html_url, user: current_user, question: @test_passage.current_questions)
-      flash[:notice] = t('.success', link_gist: link_gist(result))
-    else
-      flash[:alert] = t('.failure')
-    end
-    redirect_to @test_passage
-  end
 
   def update
     @test_passage.accept!(params[:answer_ids])
@@ -40,11 +29,4 @@ class TestPassagesController < ApplicationController
     @test_passage = TestPassage.find(params[:id])
   end
 
-  def assign_badge
-    badges = BadgeService.new(@test_passage).call
-    unless badges.empty?
-      current_user.badges << badges
-      flash[:notice] = I18n.t('earned_badge')
-    end
-  end
 end
