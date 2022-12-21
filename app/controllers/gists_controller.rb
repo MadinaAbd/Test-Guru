@@ -9,8 +9,7 @@ class GistsController < ApplicationController
     result = GistQuestionService.new(@test_passage.current_questions).call
 
     if result.success?
-      current_user.gists.create(question: @test_passage.current_questions, url: result.gist_url)
-
+      current_user.gists.create!(question: @test_passage.current_questions, url: result.gist_url)
       flash = {notice: t('.success', url_html: helpers.link_to(result.gist_url, result.gist_url, target: '_blank').html_safe) }
 
     else
